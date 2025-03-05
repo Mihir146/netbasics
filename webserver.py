@@ -1,6 +1,6 @@
 import socket
 import sys
-import string
+# import string
 
 
 s = socket.socket()
