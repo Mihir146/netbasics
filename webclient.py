@@ -7,7 +7,7 @@ s.settimeout(5)
 
 def clt(host, port):
     s.connect((host, port))
-    request = b"GET /home/mihir/netbasics/hey.html HTTP/1.1\r\nHost: " + \
+    request = b"GET /home/mihir/netbasics/nyan-cat.gif HTTP/1.1\r\nHost: " + \
         host.encode() + b"\r\n\r\n"
     s.sendall(request)
     response = b""

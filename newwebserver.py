@@ -33,6 +33,8 @@ def nwebserver(portnum):
             content_type = "text/html"
         if (extn == ".txt"):
             content_type = "/text/plain"
+        if (extn == ".gif"):
+            content_type = "/image/gif"
         # reading the file and getting content size and handling not found 404 error
         data = b""
         content_size = ""
@@ -48,7 +50,7 @@ def nwebserver(portnum):
             break
         # putting together the http response!!
         response = b"HTTP/1.1 200 OK\r\nContent-Type: " + \
-            content_type.encode() + b"Content-Length: " + \
+            content_type.encode() + b"\r\nContent-Length: " + \
             content_size.encode() + b"\r\n\r\n" + data
         new_sock.sendall(response)
         new_sock.close()
