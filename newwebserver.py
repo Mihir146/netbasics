@@ -37,15 +37,15 @@ def nwebserver(portnum):
         data = b""
         content_size = ""
         # new_sock.sendall(file.encode())
-        # try:
-        with open(file, "rb") as fp:
-            data = fp.read()
-            # new_sock.sendall(data)
-            content_size = str(os.path.getsize(file))
-       # except:
-       #     new_sock.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-       #     new_sock.close()
-       #     break
+        try:
+            with open(file, "rb") as fp:
+                data = fp.read()
+                # new_sock.sendall(data)
+                content_size = str(os.path.getsize(file))
+        except:
+            new_sock.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
+            new_sock.close()
+            break
         # putting together the http response!!
         response = b"HTTP/1.1 200 OK\r\nContent-Type: " + \
             content_type.encode() + b"Content-Length: " + \
