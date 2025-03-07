@@ -17,12 +17,12 @@ def system_seconds_since_1900():
 
 def timeclient():
     s = socket.socket()
-    s.connect(('time-c-g.nist.gov', 37))
+    s.connect(('time.nist.gov', 37))
     data = s.recv(4)
     s.close()
     atomic_time = int.from_bytes(data, "big")
     print("NIST time : "+str(atomic_time)+"\r\n")
-    print(system_seconds_since_1900())
+    print("System time : "+str(system_seconds_since_1900()))
 
 
 timeclient()
