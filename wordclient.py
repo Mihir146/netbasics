@@ -24,13 +24,21 @@ def get_next_word_packet(s):
     """
 
     global packet_buffer
-
     # TODO -- Write me!
+    packet_buffer += s.recv(5)
+    if (len(packet_buffer) == 0):
+        return None
+    word_len = int.from_bytes(packet_buffer[:2], "big")
+    while (word_len > len(packet_buffer)-2):
+        packet_buffer += s.recv(5)
+    packet = packet_buffer[:(2+word_len)]
+    packet_buffer = packet_buffer[(2+word_len):]
+    return packet
 
 
 def extract_word(word_packet):
     """
-    Extract a word from a word packet.
+    Extract a words. from a word packet.
 
     word_packet: a word packet consisting of the encoded word length
     followed by the UTF-8 word.
@@ -38,7 +46,11 @@ def extract_word(word_packet):
     Returns the word decoded as a string.
     """
 
+    #
     # TODO -- Write me!
+    word = word_packet[2:].decode()
+    return word
+
 
 # Do not modify:
 
@@ -71,4 +83,3 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
-
