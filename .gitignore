@@ -3,3 +3,4 @@
 test.py
 *.gif
 wordserver.py 
+tcp_data/
